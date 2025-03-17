@@ -4,8 +4,8 @@ import { getUserList, addUser, updateUser, deleteUser } from './actions';
 import { Tag, Button, Modal, Form, Input, Switch, Divider, message, Skeleton, Select } from 'antd';
 import { UserType } from '@/app/db/schema';
 import { useTranslations } from 'next-intl';
-import { groupType } from '../GroupManagementTab/page';
-import { getGroupList } from '../GroupManagementTab/actions';
+import { groupType } from '../group/page';
+import { getGroupList } from '../group/actions';
 type FormValues = {
   email: string;
   password: string;
@@ -128,7 +128,7 @@ const UserListTab = () => {
     }
   }
   return (
-    <div className='container max-w-4xl mb-6 px-4 md:px-0 pt-4'>
+    <div className='container max-w-4xl mb-6 px-4 md:px-0 pt-6'>
       <div className='w-full mb-6 flex flex-row justify-between items-center'>
         <section>
           分组：
@@ -149,7 +149,7 @@ const UserListTab = () => {
             <thead>
               <tr className="bg-slate-100">
                 <th className='border-b border-r border-slate-300 p-2'>#</th>
-                <th className='border-b border-r border-slate-300 p-2'>昵称</th>
+                <th className='border-b border-r border-slate-300 p-2 min-w-16'>昵称</th>
                 <th className='border-b border-r border-slate-300 p-2'>Email</th>
                 <th className='border-b border-r border-slate-300 p-2'>{t('role')}</th>
                 <th className='border-b border-r border-slate-300 p-2'>所属分组</th>
@@ -204,7 +204,7 @@ const UserListTab = () => {
           form={form}
           onFinish={onFinish}
           validateTrigger='onBlur'
-          
+
         >
           <Form.Item label={<span className='font-medium'>Email</span>} name='email'
             rules={[{ required: true, message: t('emailNotice') }, { type: 'email', message: t('emailNotice') }]}>
